@@ -148,7 +148,7 @@ Note that the `begin` and `end` parameters are added here. These two parameters 
 
 In the above example, the `by_epoch` of `LinearLR` in the warm-up phase is False, which means that the scheduler only takes effect in the first 50 iterations. After more than 50 iterations, the scheduler will no longer take effect, and the second scheduler, which is `MultiStepLR`, will control the learning rate. When combining different schedulers, the `by_epoch` parameter does not have to be the same for each scheduler.
 
-Here is another example：
+Here is another example:
 
 ```python
 param_scheduler = [
@@ -173,7 +173,7 @@ The above example uses a linear learning rate warm-up for the first 100 iteratio
 
 Users can combine any number of schedulers. If the valid intervals of two schedulers are not connected to each other which leads to an interval that is not covered, the learning rate of this interval remains unchanged. If the valid intervals of the two schedulers overlap, the adjustment of the learning rate will be triggered in the order of the scheduler config (similar with [`ChainedScheduler`](https://pytorch.org/docs/stable/generated/torch.optim.lr_scheduler.ChainedScheduler.html#chainedscheduler)).
 
-We recommend using different learning rate scheduling strategies in different stages of training to avoid overlapping of the valid intervals. Be careful If you really need to stack two schedulers overlapped. We recommend using [learning rate visualization tool](TODO) to visualize the learning rate after stacking, to avoid the adjustment not as expected.
+We recommend using different learning rate scheduling strategies in different stages of training to avoid overlapping of the valid intervals. Be careful If you really need to stack two schedulers overlapped. We recommend using learning rate visualization tool (todo) to visualize the learning rate after stacking, to avoid the adjustment not as expected.
 
 ## How to adjust other hyperparameters
 
@@ -200,7 +200,7 @@ param_scheduler = [
 
 MMEngine also provides a set of generic parameter schedulers for scheduling other hyperparameters in the `param_groups` of the optimizer. Change `LR` in the class name of the learning rate scheduler to `Param`, such as `LinearParamScheduler`. Users can schedule the specific hyperparameters by setting the `param_name` variable of the scheduler.
 
-Here is an example：
+Here is an example:
 
 ```python
 param_scheduler = [
