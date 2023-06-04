@@ -38,7 +38,9 @@ Before continuing reading the model tutorial, let's throw out two questions that
 
 ## Interface introduction
 
-Usually, we should define a model to implement the body of the algorithm. In MMEngine, model will be managed by Runner, and need to implement some interfaces, such as `train_step`, `val_step`, and `test_step`. For high-level tasks like detection, classification, and segmentation, the interfaces mentioned above commonly implement a standard workflow. For example, `train_step` will calculate the loss and update the parameters of the model, and `val_step`/`test_step` will calculate the metrics and return the predictions. Therefore, MMEngine abstracts the [BaseModel](mmengine.model.BaseModel) to implement the common workflow.
+In MMEngine, models are managed by the Runner. The Runner expects an interface to the model that implements the model's forward workflow in the `train_step`, `val_step`, and `test_step` methods, which are invoked during training, validation, and testing, respectively.
+This interface is common for high-level tasks, such as classification, detection, and segmentation.
+Therefore, MMEngine provides [`BaseModel`](mmengine.model.BaseModel) as a unified interface for this workflow for arbitrary tasks.
 
 Benefits from the `BaseModel`, we only need to make the model inherit from `BaseModel`, and implement the `forward` function to perform the training, testing, and validation process.
 
