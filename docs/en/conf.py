@@ -13,13 +13,7 @@
 import os
 import sys
 
-from sphinx.util import logging
-from sphinx.builders.latex import LaTeXBuilder
-
-logger = logging.getLogger(__name__)
-
-#import pytorch_sphinx_theme
-import furo
+import pytorch_sphinx_theme
 
 sys.path.insert(0, os.path.abspath('../..'))
 
@@ -73,16 +67,15 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.gif']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-#html_theme = 'pytorch_sphinx_theme'
-#html_theme_path = [pytorch_sphinx_theme.get_html_theme_path()]
-html_theme = "furo"
+html_theme = 'pytorch_sphinx_theme'
+html_theme_path = [pytorch_sphinx_theme.get_html_theme_path()]
 
 html_theme_options = {
     'menu': [
@@ -105,24 +98,3 @@ html_css_files = ['css/readthedocs.css']
 # Ignore >>> when copying code
 copybutton_prompt_text = r'>>> |\.\.\. '
 copybutton_prompt_is_regexp = True
-
-
-def setup(app):
-    LaTeXBuilder.supported_image_types = [
-        'image/png', 'image/jpeg', 'application/pdf'
-    ]
-
-    def skip_unsupported_images(app, doctree, docname):
-        if app.builder.format != 'latex':
-            return
-        nodes_to_remove = []
-        for node in doctree.traverse():
-            if node.tagname == 'image':
-                if not any(node['uri'].endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.pdf']):
-                    logger.warning(f"Skipping unsupported image format in LaTeX build: {node['uri']}")
-                    nodes_to_remove.append(node)
-
-        for node in nodes_to_remove:
-            node.parent.remove(node)
-
-    app.connect('doctree-resolved', skip_unsupported_images)
