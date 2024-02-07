@@ -393,7 +393,7 @@ MMCV will wrap the model with distributed wrapper before building the runner, wh
    cfg = dict(model_wrapper_cfg='MMSeparateDistributedDataParallel')
    runner = Runner(
        model=model,
-       ..., # 
+       ...,
        launcher='pytorch',
        cfg=cfg)
    ```
