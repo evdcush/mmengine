@@ -93,7 +93,7 @@ runner.train()
 
 ## bitsandbytes
 
-[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) provides `AdamW8bit`, `Adam8bit`, `Adagrad8bit`, `PagedAdam8bit`, `PagedAdamW8bit`, `LAMB8bit`, `LARS8bit`, `RMSprop8bit`, `Lion8bit`, `PagedLion8bit` and `SGD8bit` optimziers.
+[bitsandbytes](https://github.com/TimDettmers/bitsandbytes) provides `AdamW8bit`, `Adam8bit`, `Adagrad8bit`, `PagedAdam8bit`, `PagedAdamW8bit`, `LAMB8bit`, `LARS8bit`, `RMSprop8bit`, `Lion8bit`, `PagedLion8bit` and `SGD8bit` optimizers.
 
 ```{note}
 If you use the optimizer provided by bitsandbytes, you need to upgrade mmengine to `0.9.0`.
